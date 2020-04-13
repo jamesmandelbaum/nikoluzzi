@@ -1,0 +1,11 @@
+{
+  "name": "nikoluzzi",
+  "version": "1.0.0",
+  "description": "Journal de Nicholas Mandelbaum (poésie, photo, autres)",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@sanity/cli": "^1.149.9",
+    "global": "^4.4.0"
+  }
+}
