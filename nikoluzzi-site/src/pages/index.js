@@ -5,8 +5,6 @@ import { css } from "@emotion/core"
 const IndexPage = ({ data }) => {
   console.log(data)
   const a = data.allSanityPhotographie.nodes
-
-
   return (
     <div
       css={css`
@@ -14,22 +12,24 @@ const IndexPage = ({ data }) => {
             & > * {
               margin-bottom: 1rem;
             }
+            font-family:'Staatliches'
           `}
     >
       <h1 css={css`
-            font-size: 10ch;
+            font-size: 5ch;
             text-align:center;
-            margin: 5rem auto;
+            margin: 3rem auto;
             color: #555;
+            font-family:'Staatliches'
             
-          `}>Campolide 2020</h1>
+          `}>Campolide, Lisboa</h1>
       {a.map((obj) => (
 
         <Img fluid={obj.image.asset.fluid} />
 
       ))}
-      <h3>Photos : Nicholas James Mandelbaum</h3>
-      <a href="https://www.twitter.com/nikoluzzi">twitter</a>
+      <h3 css={css`font-family:'Staatliches'; font-size: 0.875rem`}>Photos : Nicholas James Mandelbaum</h3>
+      <a css={css`font-size: 0.875rem; color: blueviolet; text-decoration:none`} href="https://www.twitter.com/nikoluzzi">twitter</a>
     </div>
   )
 }
