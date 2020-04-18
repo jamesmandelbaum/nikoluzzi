@@ -1,19 +1,36 @@
 import React from "react"
 import Img from "gatsby-image"
+import { css } from "@emotion/core"
 
 const IndexPage = ({ data }) => {
   console.log(data)
   const a = data.allSanityPhotographie.nodes
 
+
   return (
-    <>
-      {a.map(obj => (
-        <>
-          <h1>{obj.title}</h1>
-          <Img fluid={obj.image.asset.fluid} />
-        </>
+    <div
+      css={css`
+            padding: 1rem;
+            & > * {
+              margin-bottom: 1rem;
+            }
+          `}
+    >
+      <h1 css={css`
+            font-size: 10ch;
+            text-align:center;
+            margin: 5rem auto;
+            color: #555;
+            
+          `}>Campolide 2020</h1>
+      {a.map((obj) => (
+
+        <Img fluid={obj.image.asset.fluid} />
+
       ))}
-    </>
+      <h3>Photos : Nicholas James Mandelbaum</h3>
+      <a href="https://www.twitter.com/nikoluzzi">twitter</a>
+    </div>
   )
 }
 
@@ -26,7 +43,7 @@ export const query = graphql`
         title
         image {
           asset {
-            fluid(maxWidth: 700) {
+            fluid(maxWidth: 1000) {
               ...GatsbySanityImageFluid
             }
           }
