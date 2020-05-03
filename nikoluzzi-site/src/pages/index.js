@@ -79,8 +79,7 @@ fragment SanityImage on SanityImage {
   }
   query MyQuery {
     allSanityPhotographie {
-      edges {
-      node {
+      nodes {
           slug {
             current
           }
@@ -88,7 +87,6 @@ fragment SanityImage on SanityImage {
             ...SanityImage
           }     
       }
-    }
     }
   }
 `
