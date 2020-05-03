@@ -6,10 +6,11 @@ const Grid = ({ children }) => {
   return (
     <div
       css={css`
-        column-count: ${3};
-        column-gap: 0.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
         & > * {
-          display: inline-block;
+         
           margin: 0 0 rem;
           width: 100%;
           border-radius: 0.25rem;

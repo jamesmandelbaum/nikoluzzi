@@ -1,8 +1,9 @@
 import React from "react"
 import { Link } from 'gatsby'
-import Img from "gatsby-image"
+import Img from "gatsby-image/withIEPolyfill"
 import { css } from "@emotion/core"
 import Grid from '../components/Grid'
+import newImg from '../images/img.png'
 const IndexPage = ({ data }) => {
   console.log(data)
   const a = data.allSanityPhotographie.nodes
@@ -26,13 +27,18 @@ const IndexPage = ({ data }) => {
           `}>Campolide, Lisboa</h1>
       <Grid>
         {a.map((obj) => (
-          <Link to={`photo/${obj.slug.current}`}>
-            <Img fluid={obj.image.asset.fluid}
-            />
-          </Link>
+          <Img fixed={obj.image.asset.fixed}
+          />
+          /* <picture>
+
+            <source src={newImg} />
+          </picture> */
+
+
 
         ))}
       </Grid>
+
       <h3 css={css`font-family:'Staatliches'; font-size: 0.875rem`}>Photos : Nicholas James Mandelbaum</h3>
       <a css={css`font-size: 0.875rem; color: blueviolet; text-decoration`} href="https://www.twitter.com/nikoluzzi">twitter</a>
     </div>
@@ -43,16 +49,16 @@ export default IndexPage
 
 export const query = graphql`
   query MyQuery {
-    allSanityPhotographie {
-      nodes {
-        slug {
+          allSanityPhotographie {
+          nodes {
+          slug {
           current
         }
         image {
           asset {
-            fluid(maxWidth: 300) {
-              ...GatsbySanityImageFluid
-            }
+          fixed(width: 300) {
+          ...GatsbySanityImageFixed_noBase64
+        }
           }
         }
       }
