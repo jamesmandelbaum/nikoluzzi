@@ -1,9 +1,12 @@
 import React from "react"
 import { Link } from 'gatsby'
-import Img from "gatsby-image/withIEPolyfill"
 import { css } from "@emotion/core"
 import Grid from '../components/Grid'
 import newImg from '../images/img.png'
+import { buildImageObj } from '../lib/helpers'
+import { imageUrlFor } from '../lib/image-url'
+
+
 const IndexPage = ({ data }) => {
   console.log(data)
   const a = data.allSanityPhotographie.nodes
@@ -27,14 +30,19 @@ const IndexPage = ({ data }) => {
           `}>Campolide, Lisboa</h1>
       <Grid>
         {a.map((obj) => (
-          <Img fixed={obj.image.asset.fixed}
-          />
-          /* <picture>
+          <Link to={`photo/${obj.slug.current}`}>
+            <picture>
 
-            <source src={newImg} />
-          </picture> */
+              <source src={newImg} />
+            </picture>
+            <img
+              src={imageUrlFor(buildImageObj(obj.image))
+                .width(600)
+                .height(Math.floor((9 / 16) * 600))
+                .url()}
+            />
 
-
+          </Link>
 
         ))}
       </Grid>
@@ -48,20 +56,39 @@ const IndexPage = ({ data }) => {
 export default IndexPage
 
 export const query = graphql`
+fragment SanityImage on SanityImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+    }
+  }
   query MyQuery {
-          allSanityPhotographie {
-          nodes {
+    allSanityPhotographie {
+      edges {
+      node {
           slug {
-          current
-        }
-        image {
-          asset {
-          fixed(width: 300) {
-          ...GatsbySanityImageFixed_noBase64
-        }
+            current
           }
-        }
+          image {
+            ...SanityImage
+          }     
       }
+    }
     }
   }
 `

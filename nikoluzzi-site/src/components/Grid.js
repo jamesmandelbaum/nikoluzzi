@@ -6,9 +6,8 @@ const Grid = ({ children }) => {
   return (
     <div
       css={css`
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 1rem;
+        column-count: 2;
+    
         & > * {
          
           margin: 0 0 rem;
