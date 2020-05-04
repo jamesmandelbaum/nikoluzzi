@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { css } from '@emotion/core';
+import React, { useState } from "react"
+import { css } from "@emotion/core"
 
 const Card = ({ cardNumber }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   const handleClick = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
   return (
     <div
       css={css`
@@ -19,7 +19,7 @@ const Card = ({ cardNumber }) => {
         cursor: pointer;
         /*Transition is still jumpy*/
         /*transition: height 200ms ease-out;*/
-        transition: ${open ? `height 200ms ease-out` : ''};
+        transition: ${open ? `height 200ms ease-out` : ""};
         & > * {
           min-height: 100%;
           display: flex;
@@ -40,7 +40,7 @@ const Card = ({ cardNumber }) => {
         {cardNumber}
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

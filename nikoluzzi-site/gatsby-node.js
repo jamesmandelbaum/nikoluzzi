@@ -10,9 +10,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
       allSanityPhotographie(filter: { slug: { current: { ne: null } } }) {
-        edges{
+        edges {
           node {
-            slug{
+            slug {
               current
             }
             image {
