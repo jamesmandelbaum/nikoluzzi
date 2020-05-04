@@ -13,9 +13,7 @@ const IndexPage = ({ data }) => {
     <div
       css={css`
         padding: 1rem;
-
         display: flex;
-        width: 100%;
         flex-direction: column;
         align-items: center;
         & > * {
@@ -41,9 +39,17 @@ const IndexPage = ({ data }) => {
       <Grid>
         {edges.map((edge) => (
           <Link to={`photo/${edge.node.slug.current}`}>
-            <img
-              src={imageUrlFor(buildImageObj(edge.node.image)).width(600).url()}
-            />
+            <picture>
+              <img
+                css={css`
+                  min-width: 100%;
+                  max-width: 100%;
+                `}
+                src={imageUrlFor(buildImageObj(edge.node.image))
+                  .width(600)
+                  .url()}
+              />
+            </picture>
           </Link>
         ))}
       </Grid>
