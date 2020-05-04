@@ -6,8 +6,8 @@ const Grid = ({ children }) => {
   return (
     <div
       css={css`
-        column-count: 2;
-
+        column-count: 3;
+        column-gap: 0.5rem;
         & > * {
           margin: 0 0 rem;
           width: 100%;

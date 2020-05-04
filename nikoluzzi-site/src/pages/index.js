@@ -8,15 +8,23 @@ import { imageUrlFor } from "../lib/image-url"
 
 const IndexPage = ({ data }) => {
   console.log(data)
-  const a = data.allSanityPhotographie.edges
+  const { edges } = data.allSanityPhotographie
   return (
     <div
       css={css`
         padding: 1rem;
+
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
         & > * {
-          margin-bottom: 1rem;
+          max-width: 1800px;
         }
         font-family: "Staatliches";
+        img {
+          margin: 0;
+        }
       `}
     >
       <h1
@@ -31,15 +39,10 @@ const IndexPage = ({ data }) => {
         Campolide, Lisboa
       </h1>
       <Grid>
-        {a.map((obj) => (
-          <Link to={`photo/${obj.node.slug.current}`}>
-            <picture>
-              <source src={newImg} />
-            </picture>
+        {edges.map((edge) => (
+          <Link to={`photo/${edge.node.slug.current}`}>
             <img
-              src={imageUrlFor(buildImageObj(obj.node.image))
-                .width(600)
-                .url()}
+              src={imageUrlFor(buildImageObj(edge.node.image)).width(600).url()}
             />
           </Link>
         ))}
@@ -67,24 +70,24 @@ export default IndexPage
 
 export const query = graphql`
   fragment SanityImage on SanityImage {
-      asset {
-        _id
-      }
+    asset {
+      _id
     }
-query MyQuery {
-  allSanityPhotographie {
-    edges {
-      node {
-        slug {
-          current
-        }
-        image {
-          asset {
-            _id
+  }
+  query MyQuery {
+    allSanityPhotographie {
+      edges {
+        node {
+          slug {
+            current
+          }
+          image {
+            asset {
+              _id
+            }
           }
         }
       }
     }
   }
-}
 `
